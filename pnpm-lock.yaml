@@ -4,6 +4,7 @@ specifiers:
   '@koa/cors': ^4.0.0
   '@types/koa': ^2.13.5
   '@types/koa-logger': ^3.1.2
+  '@types/koa-router': ^7.4.4
   '@types/koa__cors': ^3.3.0
   koa: ^2.13.4
   koa-body: ^6.0.1
@@ -16,6 +17,7 @@ specifiers:
 
 dependencies:
   '@koa/cors': 4.0.0
+  '@types/koa-router': 7.4.4
   koa: 2.14.1
   koa-body: 6.0.1
   koa-logger: 3.2.1
@@ -266,6 +268,12 @@ packages:
     dependencies:
       '@types/koa': 2.13.5
     dev: true
+
+  /@types/koa-router/7.4.4:
+    resolution: {integrity: sha512-3dHlZ6CkhgcWeF6wafEUvyyqjWYfKmev3vy1PtOmr0mBc3wpXPU5E8fBBd4YQo5bRpHPfmwC5yDaX7s4jhIN6A==}
+    dependencies:
+      '@types/koa': 2.13.5
+    dev: false
 
   /@types/koa/2.13.5:
     resolution: {integrity: sha512-HSUOdzKz3by4fnqagwthW/1w/yJspTgppyyalPVbgZf8jQWvdIXcVW5h2DGtw4zYntOaeRGx49r1hxoPWrD4aA==}

@@ -4,6 +4,7 @@ import KoaBody from "koa-body";
 import logger from "koa-logger";
 
 import cors from "@koa/cors";
+import { router } from "./routes";
 
 const app = new Koa<
   { isKnownError: Boolean },
@@ -15,7 +16,8 @@ const httpServer = createServer(app.callback());
 app
   .use(logger())
   .use(cors({ credentials: true, origin: "http://localhost:3000" }))
-  .use(KoaBody());
+  .use(KoaBody())
+  .use(router.routes());
 
 httpServer.listen(3014);
 
