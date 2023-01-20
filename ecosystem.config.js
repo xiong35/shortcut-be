@@ -7,7 +7,7 @@ module.exports = {
       name,
       script: path.resolve(
         __dirname,
-        "./dist/be/src/index.js"
+        "./dist/index.js"
       ),
       instances: 1,
       autorestart: false,

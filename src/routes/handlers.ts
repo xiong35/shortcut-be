@@ -1,4 +1,4 @@
-import Router from "koa-router";
+import * as Router from "koa-router";
 import { updateDataUsage } from "../handlers/DataUsage/update";
 import { getDataUsageReport } from "../handlers/DataUsage/report";
 

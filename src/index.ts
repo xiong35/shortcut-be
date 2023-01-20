@@ -1,9 +1,9 @@
 import { createServer } from "http";
-import Koa from "koa";
+import * as Koa from "koa";
 import KoaBody from "koa-body";
-import logger from "koa-logger";
+import * as logger from "koa-logger";
 
-import cors from "@koa/cors";
+import * as cors from "@koa/cors";
 import { router } from "./routes";
 
 const app = new Koa<
