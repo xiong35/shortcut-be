@@ -1,0 +1,31 @@
+{
+  "name": "shortcut-be",
+  "version": "1.0.0",
+  "private": false,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "rm -rf dist && tsc",
+    "pro": "npx pm2 start ecosystem.config.js --env production -o ./log/pm2.log -e ./log/pm2-err.log",
+    "stop": "npx pm2 stop ecosystem.config.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/koa": "^2.13.5",
+    "@types/koa-logger": "^3.1.2",
+    "@types/koa__cors": "^3.3.0",
+    "nodemon": "^1.19.4",
+    "pm2": "^3.5.2",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.1.0"
+  },
+  "dependencies": {
+    "@koa/cors": "^4.0.0",
+    "koa": "^2.13.4",
+    "koa-body": "^6.0.1",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^12.0.0"
+  }
+}
