@@ -80,11 +80,11 @@ function str2AppRecords(str) {
             names.push(l);
         }
     }
-    const maxLen = Math.max(names.length, usages.length);
-    names = names.slice(0, maxLen);
-    usages = usages.slice(0, maxLen);
+    const minLen = Math.min(names.length, usages.length);
+    names = names.slice(0, minLen);
+    usages = usages.slice(0, minLen);
     const records = [];
-    for (let i = 0; i < maxLen; i++) {
+    for (let i = 0; i < minLen; i++) {
         records.push({ name: names[i], usage: usages[i] });
     }
     return records;
