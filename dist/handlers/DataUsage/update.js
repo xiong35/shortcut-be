@@ -56,7 +56,7 @@ const updateDataUsage = (ctx) => __awaiter(void 0, void 0, void 0, function* () 
 exports.updateDataUsage = updateDataUsage;
 function str2AppRecords(str) {
     const usageReg = /(\d+\.?\d*)\s*mb/i;
-    str = (0, utils_1.format2MB)(str);
+    str = (0, utils_1.format2MB)((0, utils_1.normalizeOCR)(str));
     let names = [];
     let usages = [];
     const lines = str.split("\n").filter((l) => l !== "");

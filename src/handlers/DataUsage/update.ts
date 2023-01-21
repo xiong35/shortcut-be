@@ -69,7 +69,7 @@ export const updateDataUsage: Middleware = async (ctx) => {
 function str2AppRecords(str: string): AppRecord[] {
   const usageReg = /(\d+\.?\d*)\s*mb/i;
 
-  str = format2MB(str);
+  str = format2MB(normalizeOCR(str));
 
   let names: string[] = [];
   let usages: number[] = [];
