@@ -1,5 +1,6 @@
 import { Middleware } from "koa";
 import { AppRecord, DataRecord } from "./type";
+import { format2MB, normalizeOCR } from "./utils";
 
 type DataUsageBody = {
   0: string;
@@ -61,20 +62,9 @@ export const updateDataUsage: Middleware = async (ctx) => {
 
   console.log(newRecords);
 
-  ctx.body = JSON.stringify(newRecords).replace(/末/g, "未");
+  ctx.body = normalizeOCR(JSON.stringify(newRecords));
 };
 
-function format2MB(str: string) {
-  const numReg = /(\d+)[\. ](\d+)\s*([gkm]b)/gi;
-  const gbReg = /(\d+)\.(\d+)\s*GB/gi;
-  const zeroReg = /\d+\.\d+\s*KB/gi;
-  const kbReg = /(\d+)\s*KB/gi;
-  return str
-    .replace(numReg, (match, p1, p2, p3) => `${p1}.${p2} ${p3}`)
-    .replace(gbReg, (match, p1, p2) => `${p1}${p2}00 MB`)
-    .replace(kbReg, (match, p1) => `0.${p1} MB`)
-    .replace(zeroReg, "0 MB");
-}
 
 function str2AppRecords(str: string): AppRecord[] {
   const usageReg = /(\d+\.?\d*)\s*mb/i;

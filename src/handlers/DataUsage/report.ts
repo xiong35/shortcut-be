@@ -6,6 +6,7 @@
 import { Middleware } from "koa";
 import { DataRecord, isDataRecord } from "./type";
 import koaBody from "koa-body";
+import { isToday, isYesterday } from "./utils";
 
 type AppData = {
   /** app 名字 */
@@ -151,27 +152,6 @@ ${onlyEndStr}
 
   ctx.body = { data: returnMDStr };
 };
-
-function isToday(dateStr: string) {
-  const date = new Date(dateStr);
-  const now = new Date();
-  return (
-    date.getFullYear() === now.getFullYear() &&
-    date.getMonth() === now.getMonth() &&
-    date.getDate() === now.getDate()
-  );
-}
-
-function isYesterday(dateStr: string) {
-  const date = new Date(dateStr);
-  const now = new Date();
-  const yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000);
-  return (
-    date.getFullYear() === yesterday.getFullYear() &&
-    date.getMonth() === yesterday.getMonth() &&
-    date.getDate() === yesterday.getDate()
-  );
-}
 
 /** 遍历某天的数据并记录在 map 中 */
 function setRecord(appsToHandle: Map<string, AppData>, dataRecord: DataRecord) {

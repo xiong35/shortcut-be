@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getDataUsageReport = void 0;
 const type_1 = require("./type");
+const utils_1 = require("./utils");
 function fmtAppDataSorter(a, b) {
     if (a.diff > b.diff)
         return -1;
@@ -34,9 +35,9 @@ const getDataUsageReport = (ctx) => __awaiter(void 0, void 0, void 0, function* 
     const onlyEnd = [];
     for (const r of appsToHandle.values()) {
         if (r.endUsage && r.startUsage) {
-            if (!isToday(r.endUsage.date))
+            if (!(0, utils_1.isToday)(r.endUsage.date))
                 continue;
-            if (isYesterday(r.startUsage.date)) {
+            if ((0, utils_1.isYesterday)(r.startUsage.date)) {
                 todayAndYesterday.push(r);
             }
             else {
@@ -113,21 +114,6 @@ ${onlyEndStr}
     ctx.body = { data: returnMDStr };
 });
 exports.getDataUsageReport = getDataUsageReport;
-function isToday(dateStr) {
-    const date = new Date(dateStr);
-    const now = new Date();
-    return (date.getFullYear() === now.getFullYear() &&
-        date.getMonth() === now.getMonth() &&
-        date.getDate() === now.getDate());
-}
-function isYesterday(dateStr) {
-    const date = new Date(dateStr);
-    const now = new Date();
-    const yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000);
-    return (date.getFullYear() === yesterday.getFullYear() &&
-        date.getMonth() === yesterday.getMonth() &&
-        date.getDate() === yesterday.getDate());
-}
 function setRecord(appsToHandle, dataRecord) {
     dataRecord.records.forEach((record) => {
         if (!appsToHandle.has(record.name)) {

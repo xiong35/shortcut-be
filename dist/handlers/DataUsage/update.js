@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateDataUsage = void 0;
+const utils_1 = require("./utils");
 function isDataUsageBody(body) {
     if (body === undefined)
         return false;
@@ -50,23 +51,12 @@ const updateDataUsage = (ctx) => __awaiter(void 0, void 0, void 0, function* () 
     }
     const newRecords = [dataRecord, ...body["old-data"]];
     console.log(newRecords);
-    ctx.body = JSON.stringify(newRecords).replace(/末/g, "未");
+    ctx.body = (0, utils_1.normalizeOCR)(JSON.stringify(newRecords));
 });
 exports.updateDataUsage = updateDataUsage;
-function format2MB(str) {
-    const numReg = /(\d+)[\. ](\d+)\s*([gkm]b)/gi;
-    const gbReg = /(\d+)\.(\d+)\s*GB/gi;
-    const zeroReg = /\d+\.\d+\s*KB/gi;
-    const kbReg = /(\d+)\s*KB/gi;
-    return str
-        .replace(numReg, (match, p1, p2, p3) => `${p1}.${p2} ${p3}`)
-        .replace(gbReg, (match, p1, p2) => `${p1}${p2}00 MB`)
-        .replace(kbReg, (match, p1) => `0.${p1} MB`)
-        .replace(zeroReg, "0 MB");
-}
 function str2AppRecords(str) {
     const usageReg = /(\d+\.?\d*)\s*mb/i;
-    str = format2MB(str);
+    str = (0, utils_1.format2MB)(str);
     let names = [];
     let usages = [];
     const lines = str.split("\n").filter((l) => l !== "");
