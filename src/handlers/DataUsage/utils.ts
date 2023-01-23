@@ -1,6 +1,7 @@
 export function normalizeOCR(s: string): string {
   return s
     .replace(/末定/g, "未定")
+    .replace(/事件[^"\n]/g, "事件簿")
     .replace(/(Q0|0Q|oQ|Qo)/gi, "QQ")
     .replace(/[^"\n]+热点/gi, "个人热点")
     .replace(/知[^"\n]{1,2}/gi, "知乎")
