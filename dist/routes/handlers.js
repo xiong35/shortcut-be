@@ -9,3 +9,4 @@ exports.handlerRouter = new Router();
 exports.handlerRouter.post("data-usage", "/data/update", update_1.updateDataUsage);
 exports.handlerRouter.post("data-usage", "/data/get-report", report_1.getDataUsageReport);
 exports.handlerRouter.post("agenda", "/agenda", Agenda_1.handleAgenda);
+exports.handlerRouter.get("ping", "/ping", (ctx) => (ctx.body = "pong"));

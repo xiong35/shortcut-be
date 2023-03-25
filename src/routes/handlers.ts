@@ -9,3 +9,5 @@ handlerRouter.post("data-usage", "/data/update", updateDataUsage);
 handlerRouter.post("data-usage", "/data/get-report", getDataUsageReport);
 
 handlerRouter.post("agenda", "/agenda", handleAgenda);
+
+handlerRouter.get("ping", "/ping", (ctx) => (ctx.body = "pong"));
